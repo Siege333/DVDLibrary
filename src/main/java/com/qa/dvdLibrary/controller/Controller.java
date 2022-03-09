@@ -23,8 +23,8 @@ public class Controller {
 	public Controller(DvdService service) {
 	this.service = service;
 	}
-	
-    //  Create a greeting so user can select which service they want
+
+	//  Create a greeting so user can select which service they want
 	@GetMapping("/greeting")
 	public String greeting() {
         return "Welcome to the DVD LIbrary. What would you like to do?";
