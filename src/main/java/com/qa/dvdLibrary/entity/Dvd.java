@@ -50,7 +50,19 @@ public class Dvd {
 		this.leadingLady = leadingLady;
 		this.leadingActor = leadingActor;
 	}
-
+	
+	public Dvd(int dvdID, String title, String genre, int releaseDate, int runningTime, String bbfcRating,
+			String leadingLady, String leadingActor) {
+		super();
+		this.dvdID = dvdID;
+		this.title = title;
+		this.genre = genre;
+		this.releaseDate = releaseDate;
+		this.runningTime = runningTime;
+		this.bbfcRating = bbfcRating;
+		this.leadingLady = leadingLady;
+		this.leadingActor = leadingActor;
+	}
 
 	public int getDvdID() {
 		return dvdID;
