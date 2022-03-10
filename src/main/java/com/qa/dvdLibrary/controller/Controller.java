@@ -29,12 +29,9 @@ public class Controller {
 		return new ResponseEntity<Dvd>(this.service.createDvd(dvd), HttpStatus.CREATED);
 	}	
 	
-	
-	//This still needs finishing
     // This is the Read all function to read all the entries in the database
 	@GetMapping("/readAll")
-	public ResponseEntity <Dvd> readAllDvds(@RequestBody Dvd dvd) {
-		return new ;
-		
+	public ResponseEntity <List<Dvd>> readAll() {
+		return new ResponseEntity<List<Dvd>>(this.service.readAllDvds(), HttpStatus.FOUND);
 	}
 }

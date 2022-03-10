@@ -1,5 +1,7 @@
 package com.qa.dvdLibrary.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,9 @@ public class DvdService {
 	
 	public Dvd createDvd(Dvd d) {
 		return this.repo.save(d);
+	}
+
+	public List<Dvd> readAllDvds() {
+		return this.repo.findAll();
 	}
 }
