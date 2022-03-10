@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,4 +35,11 @@ public class Controller {
 	public ResponseEntity <List<Dvd>> readAll() {
 		return new ResponseEntity<List<Dvd>>(this.service.readAllDvds(), HttpStatus.FOUND);
 	}
+	
+	//This is the ReadById function to find entries by their ID
+	@GetMapping("/getByID/{dvdID}")
+	public ResponseEntity<Dvd> getByID(@PathVariable Integer dvdID) {
+		return new ResponseEntity<Dvd>(this.service.getByID(dvdID), HttpStatus.FOUND);
+	}
+	
 }
