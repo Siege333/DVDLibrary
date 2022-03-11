@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,4 +43,10 @@ public class Controller {
 		return new ResponseEntity<Dvd>(this.service.getByID(dvdID), HttpStatus.FOUND);
 	}
 	
+	//This is the Update function to alter an entry already in the database
+	@PutMapping("/updateDVD/{dvdID}")
+	public ResponseEntity<Dvd> updateDvd(@PathVariable Integer dvdID, @RequestBody Dvd dvd) {
+		return new ResponseEntity<Dvd>(this.service.updateDvd(dvdID, dvd), HttpStatus.ACCEPTED);
+	}
+
 }

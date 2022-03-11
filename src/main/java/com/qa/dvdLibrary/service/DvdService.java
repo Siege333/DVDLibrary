@@ -36,5 +36,17 @@ public class DvdService {
 		} else {
 			throw new EntityNotFoundException("Can't find that DVD");
 		}
+    }
+
+	public Dvd updateDvd(Integer dvdID, Dvd d) {
+		Dvd foundDvd = this.getByID(dvdID);
+		foundDvd.setTitle(d.getTitle());
+		foundDvd.setGenre(d.getGenre());
+		foundDvd.setReleaseDate(d.getReleaseDate());
+		foundDvd.setRunningTime(d.getRunningTime());
+		foundDvd.setBbfcRating(d.getBbfcRating());
+		foundDvd.setLeadingLady(d.getLeadingLady());
+		foundDvd.setLeadingActor(d.getLeadingActor());
+		return this.repo.save(foundDvd);
 	}
 }
