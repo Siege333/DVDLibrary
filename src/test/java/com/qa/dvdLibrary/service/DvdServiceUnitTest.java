@@ -66,6 +66,18 @@ public class DvdServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(Mockito.anyInt());
 	}
 	
+//	@Test
+//	void findDvdByTitleTest() {
+//        String title = "Stardust";
+//		
+//		Dvd foundDvd = new Dvd("Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
+//		
+//		Mockito.when(this.repo.findDvdByTitle(title)).thenReturn(Optional.of(foundDvd));
+//		
+//		assertThat(this.service.findDvdByTitle(title).equals(foundDvd));
+//		
+//		Mockito.verify(this.repo, Mockito.times(1)).findDvdByTitle(Mockito.anyString());
+//	}
 	
 	// Not working yet. Keeps giving Null when tested
 	@Test
