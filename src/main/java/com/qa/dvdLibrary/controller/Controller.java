@@ -43,6 +43,12 @@ public class Controller {
 		return new ResponseEntity<Dvd>(this.service.getByID(dvdID), HttpStatus.FOUND);
 	}
 	
+	//This is to search for a DVD by title
+	@GetMapping("/findByTitle/{title}")
+	public ResponseEntity<List<Dvd>> findDvdByTitle(@PathVariable String title) {
+		return new ResponseEntity<List<Dvd>>(this.service.findDvdByTitle(title), HttpStatus.FOUND);
+	}
+	
 	//This is the Update function to alter an entry already in the database
 	@PutMapping("/updateDVD/{dvdID}")
 	public ResponseEntity<Dvd> updateDvd(@PathVariable Integer dvdID, @RequestBody Dvd dvd) {

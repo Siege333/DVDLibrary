@@ -37,6 +37,11 @@ public class DvdService {
 			throw new EntityNotFoundException("Can't find that DVD");
 		}
     }
+	
+	public List<Dvd> findDvdByTitle(String title) {
+		return this.repo.findDvdByTitle(title);
+	}
+	
 
 	public Dvd updateDvd(Integer dvdID, Dvd d) {
 		Dvd foundDvd = this.getByID(dvdID);
