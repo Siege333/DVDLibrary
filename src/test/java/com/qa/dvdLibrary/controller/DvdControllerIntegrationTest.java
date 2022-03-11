@@ -74,4 +74,16 @@ public class DvdControllerIntegrationTest {
 		this.mvc.perform(request).andExpect(responseStatus).andExpect(responseContent);
 	}
 	
+	@Test
+	void getByIDTest() throws Exception {
+		Dvd dvdSaved = new Dvd(1, "Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
+		String dvdSavedJSON = this.mapper.writeValueAsString(dvdSaved);
+	
+	    RequestBuilder request = get("/getByID/1");
+	    
+	    ResultMatcher responseStatus = status().isFound();
+		ResultMatcher responseContent = content().json(dvdSavedJSON);
+		
+		this.mvc.perform(request).andExpect(responseStatus).andExpect(responseContent);
+	}
 }
