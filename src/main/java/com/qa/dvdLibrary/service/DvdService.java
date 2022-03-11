@@ -49,4 +49,9 @@ public class DvdService {
 		foundDvd.setLeadingActor(d.getLeadingActor());
 		return this.repo.save(foundDvd);
 	}
+	
+	public boolean deleteDvd(Integer dvdID) {
+		this.repo.deleteById(dvdID);
+		return !this.repo.existsById(dvdID);
+	}
 }
