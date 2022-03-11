@@ -3,6 +3,7 @@ package com.qa.dvdLibrary.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -83,6 +84,21 @@ public class DvdControllerIntegrationTest {
 	    
 	    ResultMatcher responseStatus = status().isFound();
 		ResultMatcher responseContent = content().json(dvdSavedJSON);
+		
+		this.mvc.perform(request).andExpect(responseStatus).andExpect(responseContent);
+	}
+	
+	@Test
+	void updateDVDTest() throws Exception {
+		Dvd updatedDvd = new Dvd(1, "Stardust", "Adventure", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
+		String updatedDvdJSON = this.mapper.writeValueAsString(updatedDvd);
+		
+		RequestBuilder request = put("/updateDVD/1")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(updatedDvdJSON);
+		
+		ResultMatcher responseStatus = status().isAccepted();
+		ResultMatcher responseContent = content().json(updatedDvdJSON);
 		
 		this.mvc.perform(request).andExpect(responseStatus).andExpect(responseContent);
 	}
