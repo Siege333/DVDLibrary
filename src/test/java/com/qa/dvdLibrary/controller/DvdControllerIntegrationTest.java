@@ -1,6 +1,7 @@
 package com.qa.dvdLibrary.controller;
 
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -101,5 +102,11 @@ public class DvdControllerIntegrationTest {
 		ResultMatcher responseContent = content().json(updatedDvdJSON);
 		
 		this.mvc.perform(request).andExpect(responseStatus).andExpect(responseContent);
+	}
+	
+	@Test
+	void deleteDvdTest() throws Exception {
+		this.mvc.perform(delete("/delete/1"))
+		.andExpect(status().isGone());
 	}
 }
