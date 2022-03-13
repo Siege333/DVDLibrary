@@ -38,7 +38,12 @@ public class DvdService {
     }
 	
 	public List<Dvd> findDvdByTitle(String title) {
-		return this.repo.findDvdByTitle(title);
+		Optional<List<Dvd>> optionalDvd = this.repo.findDvdByTitle(title);
+		if (optionalDvd.isPresent()) {
+			return optionalDvd.get();
+		} else {
+			throw new DvdNotFoundException("Can't find that DVD");
+		}
 	}
 	
 

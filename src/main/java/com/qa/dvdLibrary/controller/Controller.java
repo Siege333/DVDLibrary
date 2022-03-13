@@ -45,7 +45,7 @@ public class Controller {
 	}
 	
 	//This is to search for a DVD by title
-	@GetMapping("/findByTitle/{title}")
+	@GetMapping("/findDvdByTitle/{title}")
 	public ResponseEntity<List<Dvd>> findDvdByTitle(@PathVariable String title) {
 		return new ResponseEntity<List<Dvd>>(this.service.findDvdByTitle(title), HttpStatus.FOUND);
 	}

@@ -65,34 +65,32 @@ public class DvdServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(Mockito.anyInt());
 	}
 
-	
+	// Not working yet. 
 //	@Test
 //	void findDvdByTitleTest() {
-//        String title = "Stardust";
-//		
-//		Dvd foundDvd = new Dvd("Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
-//		
-//		Mockito.when(this.repo.findDvdByTitle(title)).thenReturn(Optional.of(foundDvd));
-//		
-//		assertThat(this.service.findDvdByTitle(title).equals(foundDvd));
-//		
-//		Mockito.verify(this.repo, Mockito.times(1)).findDvdByTitle(Mockito.anyString());
+//		String searchTitle = "Stardust";
+//
+//		List<Dvd> foundDvds = new ArrayList<>();
+//		foundDvds.add(new Dvd("Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro"));
+//
+//		Mockito.when(this.repo.findDvdByTitle(searchTitle).thenReturn(foundDvds));
+//
+//		assertThat(this.service.findDvdByTitle(searchTitle)).contains(foundDvd);
+//
+//		Mockito.verify(this.repo, Mockito.atMostOnce()).findDvdByTitle(Mockito.anyString());
 //	}
 	
-
-	// Not working yet. Keeps giving Null when tested
 	@Test
 	void updateTest() {
 		int dvdID = 1;
 
-		Dvd savedDVD = new Dvd(1, "Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
-		Dvd preUpdateDVD = new Dvd(1, "Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
+		Dvd savedDVD = new Dvd("Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
 		Dvd updatedDVD = new Dvd(1, "Stardust", "Adventure", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
 
 		Mockito.when(this.repo.findById(dvdID)).thenReturn(Optional.of(savedDVD));
-		Mockito.when(this.repo.save(preUpdateDVD)).thenReturn(updatedDVD);
+		Mockito.when(this.repo.save(savedDVD)).thenReturn(updatedDVD);
 
-		assertThat(this.service.updateDvd(dvdID, preUpdateDVD)).isEqualTo(updatedDVD);
+		assertThat(this.service.updateDvd(dvdID, savedDVD)).isEqualTo(updatedDVD);
 
 		Mockito.verify(this.repo, Mockito.times(1)).findById(Mockito.anyInt());
 		Mockito.verify(this.repo, Mockito.times(1)).save(Mockito.any(Dvd.class));
