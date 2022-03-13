@@ -3,12 +3,11 @@ package com.qa.dvdLibrary.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.dvdLibrary.entity.Dvd;
+import com.qa.dvdLibrary.exceptions.DvdNotFoundException;
 import com.qa.dvdLibrary.repo.DvdRepo;
 
 @Service
@@ -34,7 +33,7 @@ public class DvdService {
 		if (optionalDvd.isPresent()) {
 			return optionalDvd.get();
 		} else {
-			throw new EntityNotFoundException("Can't find that DVD");
+			throw new DvdNotFoundException("Can't find that DVD");
 		}
     }
 	
@@ -53,5 +52,10 @@ public class DvdService {
 		foundDvd.setLeadingLady(d.getLeadingLady());
 		foundDvd.setLeadingActor(d.getLeadingActor());
 		return this.repo.save(foundDvd);
+	}
+	
+	public boolean deleteDvd(Integer dvdID) {
+		this.repo.deleteById(dvdID);
+		return !this.repo.existsById(dvdID);
 	}
 }
