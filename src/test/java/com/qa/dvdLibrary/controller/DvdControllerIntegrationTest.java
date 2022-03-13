@@ -90,6 +90,21 @@ public class DvdControllerIntegrationTest {
 	}
 	
 	@Test
+	void findDvdByTitleTest() throws Exception {
+		List<Dvd> dvds = new ArrayList<>();
+		dvds.add(new Dvd(1, "Stardust", "Romance", 2007, 122, "PG", "Claire Danes", "Robert De Niro"));
+	
+		String savedDvdsJSON = this.mapper.writeValueAsString(dvds);
+	
+	    RequestBuilder request = get("/findDvdByTitle/Stardust");
+	    
+	    ResultMatcher responseStatus = status().isFound();
+		ResultMatcher responseContent = content().json(savedDvdsJSON);
+		
+		this.mvc.perform(request).andExpect(responseStatus).andExpect(responseContent);
+	}
+	
+	@Test
 	void updateDVDTest() throws Exception {
 		Dvd updatedDvd = new Dvd(1, "Stardust", "Adventure", 2007, 122, "PG", "Claire Danes", "Robert De Niro");
 		String updatedDvdJSON = this.mapper.writeValueAsString(updatedDvd);

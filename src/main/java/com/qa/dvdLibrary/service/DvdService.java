@@ -36,6 +36,16 @@ public class DvdService {
 			throw new DvdNotFoundException("Can't find that DVD");
 		}
     }
+	
+	public List<Dvd> findDvdByTitle(String title) {
+		Optional<List<Dvd>> optionalDvd = this.repo.findDvdByTitle(title);
+		if (optionalDvd.isPresent()) {
+			return optionalDvd.get();
+		} else {
+			throw new DvdNotFoundException("Can't find that DVD");
+		}
+	}
+	
 
 	public Dvd updateDvd(Integer dvdID, Dvd d) {
 		Dvd foundDvd = this.getByID(dvdID);
